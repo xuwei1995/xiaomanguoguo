@@ -3,18 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>小满and果果</title>
-  <link href="renxi/images/heart.png" rel="shortcut icon" class="icon-love" type="images/x-ico">
+  <link href="xuwei/images/heart.png" rel="shortcut icon" class="icon-love" type="images/x-ico">
 
-  <link type="text/css" rel="stylesheet" href="renxi/default.css">
-<script type="text/javascript" src="renxi/jquery.min.js"></script>
-<script type="text/javascript" src="renxi/jscex.min.js"></script>
-<script type="text/javascript" src="renxi/jscex-parser.js"></script>
-<script type="text/javascript" src="renxi/jscex-jit.js"></script>
-<script type="text/javascript" src="renxi/jscex-builderbase.min.js"></script>
-<script type="text/javascript" src="renxi/jscex-async.min.js"></script>
-<script type="text/javascript" src="renxi/jscex-async-powerpack.min.js"></script>
-<script type="text/javascript" src="renxi/functions.js" charset="utf-8"></script>
-<script type="text/javascript" src="renxi/love.js" charset="utf-8"></script>
+  <link type="text/css" rel="stylesheet" href="xuwei/default.css">
+<script type="text/javascript" src="xuwei/jquery.min.js"></script>
+<script type="text/javascript" src="xuwei/jscex.min.js"></script>
+<script type="text/javascript" src="xuwei/jscex-parser.js"></script>
+<script type="text/javascript" src="xuwei/jscex-jit.js"></script>
+<script type="text/javascript" src="xuwei/jscex-builderbase.min.js"></script>
+<script type="text/javascript" src="xuwei/jscex-async.min.js"></script>
+<script type="text/javascript" src="xuwei/jscex-async-powerpack.min.js"></script>
+<script type="text/javascript" src="xuwei/functions.js" charset="utf-8"></script>
+<script type="text/javascript" src="xuwei/love.js" charset="utf-8"></script>
 <style type="text/css">
 <!--
 .STYLE1 {
@@ -24,9 +24,7 @@
 </style>
 </head>
 <body>
-<audio autoplay="autopaly">
-  <source src="renxi.mp3" type="audio/mp3" />
-</audio>
+<audio loop src="xuwei/renxi.mp3" id="audio" autoplay preload="auto" >该浏览器不支持audio属性</audio>
 <div id="main">
   <div id="error">目前您的浏览器无法显示，请换成谷歌(<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a href="http://firefox.com.cn/download/">Firefox</a>)浏览器，或者其他游览器的最新版本。</div>
   <div id="wrap">
@@ -61,12 +59,32 @@
 </div>
 
 <div class="body_left">
-  <img src="renxi/images/biubiubiu.gif" alt="" ondragstart='return false;'>
+  <img src="xuwei/images/biubiubiu.gif" alt="" ondragstart='return false;'>
 </div>
 <script>
     </script>
 <script>
     (function(){
+
+      //--创建页面监听，等待微信端页面加载完毕 触发音频播放
+      document.addEventListener('DOMContentLoaded', function () {
+        function audioAutoPlay() {
+          var audio = document.getElementById('audio');
+          audio.play();
+          document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+          }, false);
+        }
+        audioAutoPlay();
+      });
+//--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+      document.addEventListener('touchstart', function () {
+        function audioAutoPlay() {
+          var audio = document.getElementById('audio');
+          audio.play();
+        }
+        audioAutoPlay();
+      });
         var canvas = $('#canvas');
 		
         if (!canvas[0].getContext) {
